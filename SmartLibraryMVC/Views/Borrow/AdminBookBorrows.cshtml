@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Book Borrow Records";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model List<LibraryBLL.DTO.UserBorrowDTO>
+
+<h2>Book Borrow Records (@ViewBag.BookTitle)</h2>
+
+@if (TempData["Message"] != null)
+{
+    <p>@TempData["Message"]</p>
+}
+
+<table class="table table-bordered" border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>User</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Fine Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr><td colspan="7" align="center">No borrow records found for this book.</td></tr>
+        }
+        else
+        {
+            foreach (var borrow in Model)
+            {
+                <tr>
+                    <td>@borrow.TransactionID</td>
+                    <td>@borrow.User.FullName</td>
+                    <td>@borrow.BorrowDate.ToShortDateString()</td>
+                    <td>@borrow.DueDate.ToShortDateString()</td>
+                    <td>$@borrow.FineAmount</td>
+                    <td>@borrow.Status.Name</td>
+                    <td>
+                        <form method="post" action="@Url.Action("AdminRemoveBorrow", "Borrow")">
+                            <input type="hidden" name="transactionId" value="@borrow.TransactionID" />
+                            <input type="button" value="Delete" onclick="if(confirm('Are you sure?')) { this.form.submit(); }" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<br />
+
+<a class="btn btn-info btn-sm" href="/Book/AdminIndex">Back to List</a>
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<LibraryBLL.DTO.UserBorrowDTO>
+
+<h2>Your Borrowed Books</h2>
+@if (TempData["Message"] != null)
+{
+    <p style="color: green">@TempData["Message"]</p>
+}
+
+<form  method="post" action="/Borrow/ReturnBooks">
+    <table class="table table-bordered" border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Fine Amount</th>
+                <th>Status ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectedBorrows" value="@item.TransactionID" />
+                    </td>
+                    <td>@item.Books.BookID</td>
+                    <td>@item.Books.Title</td>
+                    <td>@item.Books.Author</td>
+                    <td>@item.BorrowDate.ToShortDateString()</td>
+                    <td>@item.DueDate.ToShortDateString()</td>
+                    <td>@item.FineAmount</td>
+                    <td>@item.StatusID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+    <button type="submit">Return Selected</button>
+</form>

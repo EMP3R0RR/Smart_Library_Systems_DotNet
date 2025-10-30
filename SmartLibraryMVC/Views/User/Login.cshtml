@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}
+
+<div class="align-content-center">
+
+    <form class="align-content-center" action="/User/Login" method="post">
+        <div>
+            <label for="username">Username:</label><br />
+            <input type="text" id="username" name="username" required />
+        </div>
+        <br />
+        <div>
+            <label for="email">Email:</label><br />
+            <input type="email" id="email" name="email" required />
+        </div>
+        <br />
+        <div>
+            <label for="password">Password:</label><br />
+            <input type="password" id="password" name="password" required />
+        </div>
+        <br />
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+</div>

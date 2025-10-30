@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+}
+
+@model LibraryBLL.DTO.UserDTO
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<h2>My Profile</h2>
+
+<table class="table table-bordered" border="1" cellpadding="6" cellspacing="0">
+    <tr>
+        <td><strong>Full Name</strong></td>
+        <td>@Model.FullName</td>
+    </tr>
+    <tr>
+        <td><strong>Email</strong></td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td><strong>Role</strong></td>
+        <td>@Model.Role</td>
+    </tr>
+    <tr>
+        <td><strong>Account Created</strong></td>
+        <td>@Model.CreatedAt.ToString("dd MMM yyyy")</td>
+    </tr>
+</table>
+
+<br />
+
+<!-- Change Password button -->
+<form method="get" controller="User" action="ChangePassword" style="display:inline;">
+    <button type="submit" class="btn btn-outline-danger">Change Password</button>
+</form>
+
+<!-- Logout button -->
+<form method="post" controller="User" action="Logout" style="display:inline;">
+    <button type="submit" class="btn btn-outline-danger">Logout</button>
+</form>
+
+
+

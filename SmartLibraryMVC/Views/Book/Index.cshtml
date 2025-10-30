@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LibraryBLL.DTO.BookDTO>
+
+@if (TempData["Message"] != null)
+{
+    <p style="color: green">@TempData["Message"]</p>
+}
+
+<h2>Books</h2>
+<br />
+<form method="get" action="/Book/Search">
+    <input type="text" name="keyword" placeholder="Search books by Names, ISBN or Authors " />
+    <button type="submit">Search</button>
+
+    <a href="/Book/Available" class="btn btn-success" style="margin-left: 7px;"> See Available Books</a>
+</form>
+<br />
+<table class="table table-bordered" border="1">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/Book/Details/@item.BookID">Details</a> ||
+                    <a  class="btn btn-success" href="/Borrow/BorrowBooks?bookId=@item.BookID">Borrow</a>
+                    
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

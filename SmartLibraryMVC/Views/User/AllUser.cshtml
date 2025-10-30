@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "AllUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model IEnumerable<LibraryBLL.DTO.UserDTO>
+
+@if (TempData["Message"] != null)
+{
+    <p style="color: green;">@TempData["Message"]</p>
+}
+
+<h2>All Users</h2>
+<br />
+
+<table class="table table-bordered" border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserID</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>@user.CreatedAt.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a href="/User/UserDetails/@user.UserID" class="btn btn-info btn-sm">View Details</a> | 
+                    <a href="/User/DeleteUser/@user.UserID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a href="/User/Create" class="btn btn-primary">Create New User</a>

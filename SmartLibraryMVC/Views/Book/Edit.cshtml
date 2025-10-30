@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model LibraryBLL.DTO.BookDTO
+
+<h2>Edit Book</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <p style="color:red;">Please fill up the form properly to save changes.</p>
+}
+
+<form method="post" action="/Book/Edit">
+    <table class="table table-bordered" border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            
+            <td>
+                <input type="hidden" name="BookID" value="@Model.BookID" readonly class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>
+                <input type="text" name="Title" value="@Model.Title" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>
+                <input type="text" name="Author" value="@Model.Author" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <th>ISBN</th>
+            <td>
+                <input type="text" name="ISBN" value="@Model.ISBN" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <th>Category ID</th>
+            <td>
+                <input type="number" name="CategoryID" value="@Model.CategoryID" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <th>Total Copies</th>
+            <td>
+                <input type="number" name="TotalCopies" value="@Model.TotalCopies" class="form-control" min="0" required />
+            </td>
+        </tr>
+        <tr>
+            <th>Available Copies</th>
+            <td>
+                <input type="number" name="AvailableCopies" value="@Model.AvailableCopies" class="form-control" min="0" required />
+            </td>
+        </tr>
+        <tr>
+            <th>Created At</th>
+            <td>
+                <input type="text" name="CreatedAt" value="@Model.CreatedAt.ToString("yyyy-MM-dd")" readonly class="form-control" />
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="@Url.Action("AdminIndex", "Book")" class="btn btn-secondary" style="margin-left:10px;">Cancel</a>
+</form>
+
+

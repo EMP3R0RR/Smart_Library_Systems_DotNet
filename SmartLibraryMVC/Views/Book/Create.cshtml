@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model LibraryBLL.DTO.BookDTO
+
+@{
+    ViewBag.Title = "Add New Book";
+}
+
+<h2>Add New Book</h2>
+
+@using (Html.BeginForm())
+{<div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter book title" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Author)
+        @Html.TextBoxFor(m => m.Author, new { @class = "form-control", placeholder = "Enter author name" })
+        @Html.ValidationMessageFor(m => m.Author)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ISBN)
+        @Html.TextBoxFor(m => m.ISBN, new { @class = "form-control", placeholder = "Enter ISBN" })
+        @Html.ValidationMessageFor(m => m.ISBN)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Category")
+        @Html.DropDownListFor(m => m.CategoryID, (SelectList)ViewBag.Categories, "-- Select Category --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CategoryID)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotalCopies)
+        @Html.TextBoxFor(m => m.TotalCopies, new { @class = "form-control", type = "number", min = "1" })
+        @Html.ValidationMessageFor(m => m.TotalCopies)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AvailableCopies)
+        @Html.TextBoxFor(m => m.AvailableCopies, new { @class = "form-control", type = "number", min = "0" })
+        @Html.ValidationMessageFor(m => m.AvailableCopies)
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Book</button>
+    <a href="@Url.Action("AdminIndex")" class="btn btn-secondary">Cancel</a>
+
+}
+

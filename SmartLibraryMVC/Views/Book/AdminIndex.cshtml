@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "AdminIndex";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model IEnumerable<LibraryBLL.DTO.BookDTO>
+
+@if (TempData["Message"] != null)
+{
+    <p style="color: green">@TempData["Message"]</p>
+}
+
+<h2>Books</h2>
+<h4>Admin view</h4>
+<br />
+<form method="get" action="/Book/AdminSearch">
+    <input type="text" name="keyword" placeholder="Search books by Names, ISBN or Authors " />
+    <button type="submit">Search</button>
+
+    <a href="/Book/AdminBookAvailable" class="btn btn-success" style="margin-left: 7px;"> See Available Books</a>
+    <a href="/Borrow/AdminBorrows" class="btn btn-success" style="margin-left: 7px;"> See All Borrows (inc)</a>
+</form>
+<br />
+<table class="table table-bordered" border="1">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/Book/AdminDetails/@item.BookID">Details</a> ||
+                    <a class="btn btn-danger btn-sm" href="/Book/Delete/@item.BookID">Delete</a>
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model LibraryBLL.DTO.UserDTO
+
+@if (TempData["Message"] != null)
+{
+    <p style="color: green;">@TempData["Message"]</p>
+}
+
+<h2>Delete User : @Model.FullName ?</h2>
+<p>Are you sure you want to delete the following user?</p>
+
+<table class="table table-bordered" border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>User ID</th>
+        <td>@Model.UserID</td>
+    </tr>
+    <tr>
+        <th>Full Name</th>
+        <td>@Model.FullName</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Role</th>
+        <td>@Model.Role</td>
+    </tr>
+    <tr>
+        <th>Created At</th>
+        <td>@Model.CreatedAt.ToString("yyyy-MM-dd")</td>
+    </tr>
+</table>
+
+<br />
+
+<form method="post" action="@Url.Action("DeleteConfirmed", "User", new { id = Model.UserID })">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("AdminIndex", "User")" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+</form>
+
+

@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model LibraryBLL.DTO.BookDTO
+
+@if (TempData["Message"] != null)
+{
+    <p style="color: green;">@TempData["Message"]</p>
+}
+
+
+<p>Are you sure you want to delete the book "@Model.Title" written by "@Model.Author" ? </p>
+
+<table class="table table-bordered" border="2" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Book ID</th>
+        <td>@Model.BookID</td>
+    </tr>
+    <tr>
+        <th>Title</th>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <th>Author</th>
+        <td>@Model.Author</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td>@Model.ISBN</td>
+    </tr>
+    <tr>
+        <th>Category ID</th>
+        <td>@Model.CategoryID</td>
+    </tr>
+    <tr>
+        <th>Total Copies</th>
+        <td>@Model.TotalCopies</td>
+    </tr>
+    <tr>
+        <th>Available Copies</th>
+        <td>@Model.AvailableCopies</td>
+    </tr>
+    <tr>
+        <th>Created At</th>
+        <td>@Model.CreatedAt.ToShortDateString()</td>
+    </tr>
+</table>
+
+<br />
+
+<form method="post" action="@Url.Action("DeleteConfirmed", "Book", new { id = Model.BookID })">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/Book/AdminIndex" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+</form>
+
+

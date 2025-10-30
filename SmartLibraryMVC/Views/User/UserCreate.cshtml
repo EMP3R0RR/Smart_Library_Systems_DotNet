@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "UserCreate";
+}
+
+@model LibraryBLL.DTO.UserDTO
+
+@if (TempData["Message"] != null)
+{<p style="color: green">@TempData["Message"]</p>
+}
+
+<h2>Create New User</h2>
+
+<form method="post" action="/User/Create" style="margin-top: 20px;">
+    <table class="table table-bordered" border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Full Name</th>
+            <td>
+                <input type="text" name="FullName" class="form-control" placeholder="Enter user's full name" required />
+            </td>
+        </tr>
+
+        ```
+        <tr>
+            <th>Password</th>
+            <td>
+                <input type="password" name="Password" class="form-control" placeholder="Enter password" required />
+            </td>
+        </tr>
+
+        <tr>
+            <th>Email (optional)</th>
+            <td>
+                <input type="email" name="Email" class="form-control" placeholder="Enter email address" />
+            </td>
+        </tr>
+
+        <tr>
+            <th>Role</th>
+            <td>
+                <select name="Role" class="form-control" required>
+                    <option value="">Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Create User</button>
+    <a href="/User/Index" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+    
+
+</form>
+
